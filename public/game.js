@@ -69,7 +69,7 @@ function create() {
 	badGuys = game.add.group();
 	badGuys.enableBody = true;
 	badGuys.physicsBodyType = Phaser.Physics.ARCADE;
-	badGuys.createMultiple(10, 'badGuy');
+	badGuys.createMultiple(15, 'badGuy');
 	badGuys.setAll('body.immovable', true);
 	badGuys.setAll('anchor.x', 0.5);
 	badGuys.setAll('anchor.y', 0.5);
@@ -95,7 +95,7 @@ function create() {
 	bgMusic.play();
 	/// false/true refers to loop
 
-	game.time.events.loop(Phaser.Timer.SECOND * 1, spawnEnemies, this);
+	game.time.events.loop(Phaser.Timer.SECOND * 1.5, spawnEnemies, this);
 };
 
 function spawnEnemies(){

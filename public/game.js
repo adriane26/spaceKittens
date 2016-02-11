@@ -90,7 +90,7 @@ function create() {
 	fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
 	pewPew = game.add.audio('pewPew', 0.6, false);
-	explosionSound = game.add.audio('explosionSound', 0.5, false);
+	explosionSound = game.add.audio('explosionSound', 0.3, false);
 	bgMusic = game.add.audio('bgMusic', 0.7, true);
 	bgMusic.play();
 	/// false/true refers to loop

@@ -9,6 +9,4 @@ app.get('/', function(req, res){
   res.sendFile('index.html');
 });
 
-app.listen(3000, function() {
-  console.log("You're listening to the smooth sounds of port 3000 in the morning");
-});
+app.listen(process.env.PORT || 3000);

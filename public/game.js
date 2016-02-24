@@ -69,7 +69,7 @@ function create() {
 	badGuys = game.add.group();
 	badGuys.enableBody = true;
 	badGuys.physicsBodyType = Phaser.Physics.ARCADE;
-	badGuys.createMultiple(10, 'badGuy');
+	badGuys.createMultiple(15, 'badGuy');
 	badGuys.setAll('body.immovable', true);
 	badGuys.setAll('anchor.x', 0.5);
 	badGuys.setAll('anchor.y', 0.5);
@@ -80,29 +80,29 @@ function create() {
 	explosions.setAll('anchor.y', 0.5);
 	explosions.callAll('animations.add', 'animations', 'explosion');
 
-	scoreText = game.add.text(32, 32, 'Score! '+ score, {font: '20px Arial', fill: 'orange'});
+	scoreText = game.add.text(32, 32, 'Score! '+ score, {font: '20px Arial Black', fill: 'orange'});
 	// where you want text to be added, what you want, then styling object
-	titleText = game.add.text(game.world.width/2, 32, 'SPACE KITTENS!!', {font: '38px arial', fill: 'limegreen' });
+	titleText = game.add.text(game.world.width/2, 32, 'SPACE KITTENS!!', {font: '38px Arial Black', fill: 'limegreen' });
 	titleText.anchor.setTo(0.5);
 
 
 	cursors = game.input.keyboard.createCursorKeys();
 	fireButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
-	pewPew = game.add.audio('pewPew', 0.5, false);
-	explosionSound = game.add.audio('explosionSound', 0.5, false);
+	pewPew = game.add.audio('pewPew', 0.6, false);
+	explosionSound = game.add.audio('explosionSound', 0.3, false);
 	bgMusic = game.add.audio('bgMusic', 0.7, true);
 	bgMusic.play();
 	/// false/true refers to loop
 
-	game.time.events.loop(Phaser.Timer.SECOND * 2, spawnEnemies, this);
+	game.time.events.loop(Phaser.Timer.SECOND * 1.5, spawnEnemies, this);
 };
 
 function spawnEnemies(){
 	var badGuy = badGuys.getFirstExists(false);
 	badGuy.reset(game.rnd.integerInRange(10,940), game.rnd.integerInRange(10,380));
 	//// tween is inBetween animations so the badGuy can move around
-	var tween = game.add.tween(badGuy).to({x: game.rnd.integerInRange(10, 940), y: game.rnd.integerInRange(10, 380)}, 1000, Phaser.Easing.Linear.None).to({x: game.rnd.integerInRange(10, 940), y: 400}, 1000).to({x: game.rnd.integerInRange(10, 940), y: 200}, 1000).loop().start();
+	var tween = game.add.tween(badGuy).to({x: game.rnd.integerInRange(10, 940), y: game.rnd.integerInRange(10, 480)}, 1000, Phaser.Easing.Linear.None).to({x: game.rnd.integerInRange(10, 940), y: game.rnd.integerInRange(10, 380)}, 1000).to({x: game.rnd.integerInRange(10, 940), y: game.rnd.integerInRange(10, 480)}, 1000).loop().start();
 
 	// tween._lastChild.onComplete(endTween, this);
 	//// Linear is straight shot.
@@ -117,7 +117,7 @@ function update() {
 
 	game.world.wrap(player);
 
-	game.physics.arcade.collide(lazers, badGuys, lazerHitBadGuy, null, this);
+	game.physics.arcade.overlap(lazers, badGuys, lazerHitBadGuy, null, this);
 
 
 	background.tilePosition.y += 1;
